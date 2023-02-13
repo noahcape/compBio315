@@ -96,10 +96,9 @@ def analyze_nucleotide_dinucleotide_data(nucleotide_freqs, dinucleotide_freqs, g
         prob_dinucleotide = dinucleotide_freqs[key] / genome_size_wo_unkowns
 
         ratio = prob_dinucleotide / (prob_base_1 * prob_base_2)
-        print(key, ratio)
         dinucleotide_ratio_deviation[key] = abs(1 - ratio)
 
-    print(max(dinucleotide_ratio_deviation, key=lambda x: dinucleotide_ratio_deviation[x]))
+    print("Most significant dinucleotide:", max(dinucleotide_ratio_deviation, key=lambda x: dinucleotide_ratio_deviation[x]))
     print({b: round((nucleotide_freqs[b]/genome_size)*100, 4) for b in list(nucleotide_freqs.keys())})
     
 
@@ -199,14 +198,18 @@ def calculate_probability(orf_data, genome_size):
                 if (len > max_reject):
                     max_reject = len
 
-    print("Confidence if ORF is longer than", max_reject)
+    if (max_reject > 0):
+        print("Confidence if ORF is longer than", max_reject)
 
 
 gene = geneFASTA(sys.argv[-2])
 circular = sys.argv[-1] == -1
 
 # (2)
-# rev_comp(gene)
+rev_comp_gene = rev_comp(gene)
+
+print(gene[:100])
+print(rev_comp_gene[:100])
 
 # (3)
 nucleotide_freq_table = nucleotide_freq(gene)
