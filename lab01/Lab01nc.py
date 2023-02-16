@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+# imported your method here
 from dpa_funcs import geneFASTA
 import sys
 
@@ -194,6 +195,7 @@ def calculate_probability(orf_data, genome_size):
         if (expected > 0):
             chi_square = (pow((observed - expected), 2) / expected)
 
+            # using df = 1
             if (chi_square < 3.841):
                 if (len > max_reject):
                     max_reject = len
