@@ -1,0 +1,44 @@
+Noah Cape
+CompBio 315
+PSET02
+
+0. Energy: The units chemists and physicists prefer are kcal/mol and eV.
+
+(a) What is the conversion factor between kcal/mol and eV.
+    1 kcal/mol = 0.0433634 eV
+
+(b) What is the thermal energy kT_human in both sets of units
+    kT is product of Boltzmann constant and the temperature (kelvin) of the system. For a human the average body temperature is 98.6 F which is 310.15 kelvin.
+    k = 1.38 x 10^-23 J/kelvin
+    kT = k(310.15) = 4.29 x 10^-21 J
+
+    Using conversion of:
+        1 joule/mol = 0.000239 kcal/mol
+        1 eV = 1.602 x 10^-19 joules
+
+    In kcal/mol = 1.03 x 10^-26 kcal/mol
+    In eV = 2.68 x 10^-2 eV
+(c) What is the typical energy of a covalent bond? Hydrogen bond? van der Waals bond? Hydrophobic interaction?
+    Covalent Bond: 95.6 kcal/mol, 4.00 eV/mol
+    Hydrogen Bond: 40 kcal/mol, 1.674 eV
+    van der Waals Bond: 0.956 kcal/mol, 0.040 eV
+    Hydrophobic interaction:  2.39 kcal/mol/nm^2, 0.100 eV/nm^2 (space dependent)
+
+(d) Explain what the implications of the range in (c) is, given (b)
+   This is still a bit perplexing and I am not sure the true implications. It takes a lot less energy for our body to increase temperature than to break certain bonds in molecules (or break interactions between proteins in our body). This means our must do a lot to keep our temperature correct because little things that happen can shift our system.
+
+2. Describe in a paragraph each:
+(a) Affine gap penalties:
+    Affine gap penalties combines a constant gap opening penalty constant and a linear gap extension penalty which will increase with the length of the gap. The equation used to calculate Affine gap penalties is A * B(L - 1), where A is the gap opening penalty, B is the gap extension penalty, and L is the length of the gap. Choosing A and B is important for what kind of sequence matches are desired. A closely related match will have higher gap penalty, which will reduce gaps being opened to match sequences. Whereas if a more distant match is desired the gap penalty should be lowered to allow for small gaps can be opened. In Affine gap penalties it is not just important to think about the magnitude of a gap penalty in total but to think about the ratio between A and B is important. A higher A but lower B will decrease opening of gaps but maybe allow for extension of gaps when they open. Or vice versa allow for gaps to be opened but then extension is costly. These factors should be considered when applying an Affine gap penalty system for sequence alignment.
+
+(b) K-band:
+    K-band algorithm for alignment uses a known bound k which cannot be exceeded when alignment two sequences. This allows for certain paths of alignment to not be checked as a possible final alignment, since we know that they will result in the bound, k, to be exceeded in final alignment therefore it is already a non-optimal alignment. Determining the alignment by checking all variants the problem is O(n^2) where n is the length of the sequences being aligned. Using k-bands with the bound k, the problem is now O(kn).
+
+(c) Multiple Alignment:
+    Multiple alignment is the process of aligning three or more sequences. This problem is much more computationally expensive compared to aligning two sequences. If the naive process for aligning two n length sequences, dynamic programming of computing all possible alignments, is O(n^2) then it is easy to see the aligning m sequences each of length n is O(n^m), which is not ideal. Therefore there are other approaches to aligning multiple sequences. These processes are used usually to identify sequence conservation. 
+
+4. Whether two genes on a chromosome are inherited together or separated to different daughter chromosomes depends on whether an even or odd number of genetics recombinations takes place between the genes. For a Poisson process with rate, r, the probability of n crossovers is: p(n;t).
+(c) In the genetic context, what do r and t represent. Is the functional form of p(crossover) reasonable?
+    r: the rate of a single crossover occurring
+    t: concept of time in the context (maybe distance between two genes in Morgans or cM)
+    The functional form of p(crossover) is reasonable given that is takes into account important factors to a crossover. There might be a bit more nuance in the whole system as to how a chiasmata is resolved depends on surrounding bases and interactions. Given this there are also hot spots in the human genome, I don't think this can capture this. But I would say on average on any given chromosome and segment this can capture the chance of recombination.
