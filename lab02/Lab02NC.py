@@ -113,18 +113,30 @@ STRING_1 = sys.argv[-2]
 STRING_2 = sys.argv[-1]
 
 
-a = init_matrix_global(len(STRING_1), len(STRING_2))
-score_matrix(STRING_1, STRING_2, a)
+# a = init_matrix_global(len(STRING_1), len(STRING_2))
+# score_matrix(STRING_1, STRING_2, a)
 
-a_l = init_matrix_local(len(STRING_1), len(STRING_2))
-score_matrix(STRING_1, STRING_2, a_l, local=True)
+# a_l = init_matrix_local(len(STRING_1), len(STRING_2))
+# score_matrix(STRING_1, STRING_2, a_l, local=True)
 
-# for local alignment
-(start_i, start_j) = find_max_score(a_l)
+# # for local alignment
+# (start_i, start_j) = find_max_score(a_l)
 
-print("Global Alignment")
-back_trace(STRING_1, STRING_2, a, False)
-print("Local Alignment")
-back_trace(STRING_1, STRING_2, a_l, True, start_i, start_j)
+# print("Global Alignment")
+# back_trace(STRING_1, STRING_2, a, False)
+# print("Local Alignment")
+# back_trace(STRING_1, STRING_2, a_l, True, start_i, start_j)
 
+def align_seqs(seq1, seq2):
+    # initialize matrix
+    matrix = init_matrix_global(len(seq1), len(seq2))
+
+    # score matrix
+    score_matrix(seq1, seq2, matrix)
+
+    # return the score
+    return matrix[len(seq1)][len(seq2)]
+
+
+print(align_seqs(STRING_1, STRING_2))
 

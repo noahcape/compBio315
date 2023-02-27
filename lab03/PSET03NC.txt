@@ -1,0 +1,66 @@
+Noah Cape
+CompBio 315
+PSET 03
+
+0. Define these terms:
+    (a) Ortholog: 
+        Genes in different species that share a common ancestral gene.
+    (b) Paralog: 
+        Homologous genes in genomes of the same species that arise from a duplication event.
+    (c) Retrotransposon: 
+        Genetics components that can copy and paste themselves in different locations in the genomes.
+    (d) SINE, LINE, Alu: 
+        Short and Long Interspersed Nuclear Elements, neither SINEs or LINEs have the LTR making them non-autonomous. SINEs are typically more conserved than LINEs as they originate from tRNA and LINEs do not so random mutation builds up in LINEs.
+        In the human genome there are more Alu elements than any other transposable element (~10% of human genome is Alu elements), these are highly conserved throughout the genome.
+
+1. BLAST:
+    (a) What makes dynamic programming unsuitable for searching large databases?
+        - due to the computational requirements for a large database is not feasable. Dynamic programming searches every path, when length grows to be the size of the search space for BLAST there become too many paths to search.
+    (b) How did they estimate the cutoff score S at which change matches would occur?
+        - using MSP, maximal seqment pair, the highest scoring pair of identical length segments between two sequences. BLAST scientists used previous studies to determine the highest MSP score where chance similarties are likely to occur.
+    (c) Explain the tradeoffs associated with the word length w and threshold T.
+        - Low T, leads to many w word pairs to exceed T and then increases computational expense to search for all sequences to satifies the conditions. And increasing w will also increase computational exprense. Whereas, decreasing w and increasing T could lead to few matches where in reality there could be many more matches if w was longer. Therefore a balance to only get good matches to exceed T and long enough matches so that there is confidence in using computational time to extend them
+    (d) What are the tradeoffs of allowing gaps?
+        - Slows down process of extending hits in the database
+    (e) How were random protein sequences used?
+        - Used to test the BLAST algorithm. The idea of the algorithm is to only use computational resources to segment pairs of w length that will have a score above the threshold T. The random sequences were used to determine how many sequences with a given score will contain a w length work with a score above the threshold.
+    (f) What "real" test were discussed in the paper?
+        - comparing homologous protein sequences (protiens with members of their respective superfamilies). Find locally similar regions of DNA in 73k base pair section of the human geneome and 44k base pair section from rabbit genome, that can be aligned without gaps.
+
+2. BLOSUM:
+    (a) What does 62 in BLOSUM62 signify?
+        - Sequence identity in aligned columns that is greater than or equal to 62 to be clustered together.
+    (b) What is the formula for BLOSUM score?
+        - 2*Log((normalized frequency of amino acid occurances) / (expected probability of amino acid aligning))
+    (c) Why is S_ij > 0?
+        - Observed frquencies are more than expected
+    (d) When is S_ij < 0?
+        - Observed frequencies are less than expected.
+    (e) Can you get S_ij > 0 and i =/= j?
+        - ??
+
+3. In the "Repetitive DNA" article:
+    (a) Wht department are the authors in?
+        - Department of Terrestrial Magnetism
+    (b) What method did they use?
+        - dissasociation and reassociation of complementary strands.
+    (c) What was suprising? What was known at the time?
+        - The experiment where reassociation of mouse cells succeeded. The amount of DNA in vertebrate was significantly more than virus, thus where complementary strands dissacociated they would rarely collide with eachother. Yet they found each other faster in vertebrate DNA than virus DNA.
+    (d) Why calf DNA?
+        - calf thymus glands, rich in DNA, are readily availabel from meat-packers.
+    (e) Copy number of tRNA and rRNA?
+        - No specified copy number, but specifically says that all species appear to have few copies of rRNA and tRNA.
+    (f) How could htey assess how similar the repetitive sequences were? (Without knowing what the sequences were
+        - Measuring dissociation temperature, high similarity has high stability, compared to low similarity.
+
+4. If a genome is length G, fragments are length L, and number of reads is N, then the average coverage is c = NL/G. What is the probability of a fragment assembly gap at a particular location? How many gaps are expected for the entire genome (i.e., how many unconnected blocks are expected)? (Poisson Formula)
+
+5. In the ecoNC_000913.2.gb GenBank file, a CDS "Feature" indicates a coding sequence.
+    (a) is thrL[190:255] an ORF in ecoNC_000913.2.fasta? (Fix it)
+        - properly index into the genome with left and right
+    (b) How are the minus strand genes denoted? Fix so the minus strand CDS are ORFs.
+        - with a complement, index into the reverse comp of the genome
+    (c) How much of the whole genomes is covered by CDSs? (Do genes overlap?)
+        - looks like not accounting for overlap, about 90% but there are overlaps in CDS.
+    (d) Can you find the tRNA and rRNA "Features"?
+        - see RNAfeatures.csv
